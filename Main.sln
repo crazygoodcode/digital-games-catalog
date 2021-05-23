@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesCatalog.API", "src\Gam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesCatalog.API.Repository", "src\GamesCatalog.API.Repository\GamesCatalog.API.Repository.csproj", "{9554806D-3022-4267-8BCA-EE9B164B9B61}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F844C9D9-E119-41EE-B0F4-67072CBCB31C}"
+	ProjectSection(SolutionItems) = preProject
+		Dev Notes.txt = Dev Notes.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GamesCatalog.API.Repository.Entities
@@ -12,6 +13,7 @@ namespace GamesCatalog.API.Repository.Entities
 
         [Required]
         [EmailAddress]
+        [MaxLength(350)]
         public string Email { get; set; }
         
         [MaxLength(75)]
@@ -22,5 +24,6 @@ namespace GamesCatalog.API.Repository.Entities
 
         public bool? Verified { get; set; } = null;
         public bool IsLocked { get; set; } = false;
+        public ICollection<UserFavoriteGames> FavoriteGames { get; set; }
     }
 }

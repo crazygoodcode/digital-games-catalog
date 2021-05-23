@@ -1,0 +1,6 @@
+Run the following commands for setup
+
+Add-Migration Initial
+
+-- Sometimes migration is not enough and this extra step is needed.
+Update-Database

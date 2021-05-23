@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,7 +18,9 @@ namespace GamesCatalog.API.Repository.Entities
         public int Added { get; set; }
         public ushort MetacriticScore { get; set; }
         public float Rating { get; set; }
+        [MaxLength(20)]
         public string Released { get; set; }
         public DateTime? LastSync { get; set; }
+        public ICollection<UserFavoriteGames> FavoriteGames { get; set; }
     }
 }
