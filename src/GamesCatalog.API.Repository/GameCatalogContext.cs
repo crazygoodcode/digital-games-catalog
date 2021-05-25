@@ -11,7 +11,6 @@ namespace GamesCatalog.API.Repository
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Game> Games { get; set; }
-        public DbSet<UserFavoriteGames> FavoriteGames { get; set; }
 
         public GameCatalogContext(DbContextOptions<GameCatalogContext> options)
             : base(options)
@@ -44,19 +43,6 @@ namespace GamesCatalog.API.Repository
             SetUpdatedDate();
 
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserFavoriteGames>().HasKey(bc => new { bc.UserId, bc.GameId });
-            modelBuilder.Entity<UserFavoriteGames>()
-                .HasOne(bc => bc.User)
-                .WithMany(b => b.FavoriteGames)
-                .HasForeignKey(bc => bc.UserId);
-            modelBuilder.Entity<UserFavoriteGames>()
-                .HasOne(bc => bc.Game)
-                .WithMany(c => c.FavoriteGames)
-                .HasForeignKey(bc => bc.GameId);
         }
 
         private void SetUpdatedDate()

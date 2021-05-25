@@ -11,7 +11,7 @@ namespace GamesCatalog.API.Repository.Migrations
                 name: "Games",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    GameId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExternalId = table.Column<long>(type: "bigint", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -25,14 +25,14 @@ namespace GamesCatalog.API.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Games", x => x.Id);
+                    table.PrimaryKey("PK_Games", x => x.GameId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    UserId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: false),
@@ -45,43 +45,43 @@ namespace GamesCatalog.API.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FavoriteGames",
+                name: "GameUser",
                 columns: table => new
                 {
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    GameId = table.Column<long>(type: "bigint", nullable: false)
+                    GamesGameId = table.Column<long>(type: "bigint", nullable: false),
+                    UsersUserId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FavoriteGames", x => new { x.UserId, x.GameId });
+                    table.PrimaryKey("PK_GameUser", x => new { x.GamesGameId, x.UsersUserId });
                     table.ForeignKey(
-                        name: "FK_FavoriteGames_Games_GameId",
-                        column: x => x.GameId,
+                        name: "FK_GameUser_Games_GamesGameId",
+                        column: x => x.GamesGameId,
                         principalTable: "Games",
-                        principalColumn: "Id",
+                        principalColumn: "GameId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FavoriteGames_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_GameUser_Users_UsersUserId",
+                        column: x => x.UsersUserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FavoriteGames_GameId",
-                table: "FavoriteGames",
-                column: "GameId");
+                name: "IX_GameUser_UsersUserId",
+                table: "GameUser",
+                column: "UsersUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "FavoriteGames");
+                name: "GameUser");
 
             migrationBuilder.DropTable(
                 name: "Games");

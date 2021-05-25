@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GamesCatalog.API.Repository.Services;
+using GamesCatalog.Core.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +12,8 @@ namespace GamesCatalog.API.Repository.Extensions
         {
             services.AddDbContext<GameCatalogContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("GameCatalogConnectionString")));
+
+            services.AddTransient<ISeedingService, SeedingService>();
 
             return services;
         }

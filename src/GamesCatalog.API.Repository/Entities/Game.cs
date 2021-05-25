@@ -9,6 +9,10 @@ namespace GamesCatalog.API.Repository.Entities
     [Table("Games")]
     public class Game : BaseEntity
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long GameId { get; set; }
+
         [Required]
         public long ExternalId { get; set; }
 
@@ -21,6 +25,7 @@ namespace GamesCatalog.API.Repository.Entities
         [MaxLength(20)]
         public string Released { get; set; }
         public DateTime? LastSync { get; set; }
-        public ICollection<UserFavoriteGames> FavoriteGames { get; set; }
+
+        public List<User> Users { get; set; }
     }
 }

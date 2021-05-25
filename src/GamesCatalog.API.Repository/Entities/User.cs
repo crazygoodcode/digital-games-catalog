@@ -7,6 +7,10 @@ namespace GamesCatalog.API.Repository.Entities
     [Table("Users")]
     public class User : BaseEntity
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long UserId { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Username { get; set; }
@@ -24,6 +28,7 @@ namespace GamesCatalog.API.Repository.Entities
 
         public bool? Verified { get; set; } = null;
         public bool IsLocked { get; set; } = false;
-        public ICollection<UserFavoriteGames> FavoriteGames { get; set; }
+
+        public List<Game> Games { get; set; }
     }
 }

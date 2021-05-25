@@ -19,9 +19,24 @@ namespace GamesCatalog.API.Repository.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("GameUser", b =>
+                {
+                    b.Property<long>("GamesGameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UsersUserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("GamesGameId", "UsersUserId");
+
+                    b.HasIndex("UsersUserId");
+
+                    b.ToTable("GameUser");
+                });
+
             modelBuilder.Entity("GamesCatalog.API.Repository.Entities.Game", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("GameId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -56,14 +71,14 @@ namespace GamesCatalog.API.Repository.Migrations
                     b.Property<DateTimeOffset>("Updated")
                         .HasColumnType("datetimeoffset");
 
-                    b.HasKey("Id");
+                    b.HasKey("GameId");
 
                     b.ToTable("Games");
                 });
 
             modelBuilder.Entity("GamesCatalog.API.Repository.Entities.User", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -98,53 +113,24 @@ namespace GamesCatalog.API.Repository.Migrations
                     b.Property<bool?>("Verified")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("GamesCatalog.API.Repository.Entities.UserFavoriteGames", b =>
+            modelBuilder.Entity("GameUser", b =>
                 {
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("GameId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("UserId", "GameId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("FavoriteGames");
-                });
-
-            modelBuilder.Entity("GamesCatalog.API.Repository.Entities.UserFavoriteGames", b =>
-                {
-                    b.HasOne("GamesCatalog.API.Repository.Entities.Game", "Game")
-                        .WithMany("FavoriteGames")
-                        .HasForeignKey("GameId")
+                    b.HasOne("GamesCatalog.API.Repository.Entities.Game", null)
+                        .WithMany()
+                        .HasForeignKey("GamesGameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GamesCatalog.API.Repository.Entities.User", "User")
-                        .WithMany("FavoriteGames")
-                        .HasForeignKey("UserId")
+                    b.HasOne("GamesCatalog.API.Repository.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("GamesCatalog.API.Repository.Entities.Game", b =>
-                {
-                    b.Navigation("FavoriteGames");
-                });
-
-            modelBuilder.Entity("GamesCatalog.API.Repository.Entities.User", b =>
-                {
-                    b.Navigation("FavoriteGames");
                 });
 #pragma warning restore 612, 618
         }

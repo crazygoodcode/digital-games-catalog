@@ -1,4 +1,5 @@
 ﻿using GamesCatalog.API.Repository;
+using GamesCatalog.Core.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,41 +14,17 @@ namespace GamesCatalog.API.Controllers
     [Route("[controller]")]
     public class SeedController : ControllerBase
     {
-        private readonly GameCatalogContext _context;
+        private readonly ISeedingService _seedingService;
 
-        public SeedController(GameCatalogContext context)
+        public SeedController(ISeedingService seedingService)
         {
-            _context = context;
+            _seedingService = seedingService;
         }
 
-        [HttpGet]
-        public async Task SeedAsync(CancellationToken cancellationToken = default)
+        [HttpPost]
+        public Task SeedAsync(CancellationToken cancellationToken = default)
         {
-            if (cancellationToken.IsCancellationRequested) return;
-
-            var user1 = _context.Users.FirstOrDefault(f => f.Username.Equals("gamer1"));
-            if (user1 == null)
-            {
-                await _context.Users.AddAsync(new Repository.Entities.User
-                {
-                    Username = "gamer1",
-                    Email = "gamer1@game.net",
-                    Verified = true
-                });
-            }
-
-            var user2 = _context.Users.FirstOrDefault(f => f.Username.Equals("gamer2"));
-            if (user2 == null)
-            {
-                await _context.Users.AddAsync(new Repository.Entities.User
-                {
-                    Username = "gamer2",
-                    Email = "gamer2@game.net",
-                    Verified = true
-                });
-            }
-
-            await _context.SaveChangesAsync(cancellationToken);
+            return _seedingService.SeedAsync(cancellationToken);
         }
     }
 }

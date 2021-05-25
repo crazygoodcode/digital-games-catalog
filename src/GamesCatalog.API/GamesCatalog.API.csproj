@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GamesCatalog.API.Repository\GamesCatalog.API.Repository.csproj" />
+    <ProjectReference Include="..\GamesCatalog.Core\GamesCatalog.Core.csproj" />
   </ItemGroup>
 
 </Project>
