@@ -29,6 +29,7 @@ namespace GamesCatalog.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddDataContexts(Configuration);
             services.AddSwaggerGen(c =>
             {

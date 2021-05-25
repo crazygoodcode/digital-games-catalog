@@ -14,6 +14,7 @@ namespace GamesCatalog.API.Repository.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("GameCatalogConnectionString")));
 
             services.AddTransient<ISeedingService, SeedingService>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
