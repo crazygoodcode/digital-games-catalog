@@ -10,6 +10,7 @@ namespace GamesCatalog.Core.Data
         Task<User> GetByUsernameAsync(string username, CancellationToken cancellationToken = default);
         Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
         Task<long> AddAsync(User user, CancellationToken cancellationToken = default);
+        Task<long> AddGameToUserAsync(long userId, Game game, CancellationToken cancellationToken = default);
         Task DeleteAsync(long id, CancellationToken cancellationToken = default);
     }
 }

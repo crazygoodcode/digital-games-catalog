@@ -1,7 +1,5 @@
-﻿using System;
+﻿using GamesCatalog.Core.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,6 +7,7 @@ namespace GamesCatalog.Core.Integrations
 {
     public interface IGameDataAPIService
     {
-        Task SearchAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<Game>> SearchAsync(GameSearchParams query, CancellationToken cancellationToken = default);
+        Task<Game> GetAsync(long gameId, CancellationToken cancellationToken = default);
     }
 }

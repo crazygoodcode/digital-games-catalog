@@ -1,5 +1,7 @@
 using GamesCatalog.API.Repository;
 using GamesCatalog.API.Repository.Extensions;
+using GamesCatalog.Core.Integrations;
+using GamesCatalog.Core.Integrations.Impl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +37,11 @@ namespace GamesCatalog.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GamesCatalog.API", Version = "v1" });
             });
+
+            services.AddSingleton<IGameDataAPIService>(new GameDataAPIService(new Core.Models.IntegrationConfiguration
+            {
+                Key = Configuration.GetValue<string>("Integrations:RAWG")
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

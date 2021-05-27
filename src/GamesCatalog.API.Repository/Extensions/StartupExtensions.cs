@@ -1,4 +1,6 @@
-﻿using GamesCatalog.API.Repository.Services;
+﻿using AutoMapper;
+using GamesCatalog.API.Repository.Mapping;
+using GamesCatalog.API.Repository.Services;
 using GamesCatalog.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +17,16 @@ namespace GamesCatalog.API.Repository.Extensions
 
             services.AddTransient<ISeedingService, SeedingService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGameRepository, GameRepository>();
+
+            var mapConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<DefaultProfile>();
+            });
+
+            var mapper = mapConfig.CreateMapper();
+
+            services.AddSingleton<IMapper>(mapper);
 
             return services;
         }

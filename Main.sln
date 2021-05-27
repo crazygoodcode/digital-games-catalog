@@ -12,8 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dev Notes.txt = Dev Notes.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesCatalog.Integrations", "src\GamesCatalog.Integrations\GamesCatalog.Integrations.csproj", "{6A622C3B-8376-486D-86C7-2A7C70F92935}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesCatalog.Core", "src\GamesCatalog.Core\GamesCatalog.Core.csproj", "{4CDA75AF-6494-40E6-ACF9-84D4F1029FDA}"
 EndProject
 Global
@@ -30,10 +28,6 @@ Global
 		{9554806D-3022-4267-8BCA-EE9B164B9B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9554806D-3022-4267-8BCA-EE9B164B9B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9554806D-3022-4267-8BCA-EE9B164B9B61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A622C3B-8376-486D-86C7-2A7C70F92935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A622C3B-8376-486D-86C7-2A7C70F92935}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A622C3B-8376-486D-86C7-2A7C70F92935}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A622C3B-8376-486D-86C7-2A7C70F92935}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4CDA75AF-6494-40E6-ACF9-84D4F1029FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CDA75AF-6494-40E6-ACF9-84D4F1029FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CDA75AF-6494-40E6-ACF9-84D4F1029FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
